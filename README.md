@@ -1,16 +1,11 @@
-# bmi_calculator
+# BMI CALCULATOR - Flutter
 
-A new Flutter project.
+Flutter を利用した BMI計算アプリ。
 
-## Getting Started
+元デザインは以下のものを利用。
 
-This project is a starting point for a Flutter application.
+https://flutterawesome.com/a-simple-app-for-calculating-bmi/
 
-A few resources to get you started if this is your first Flutter project:
+## 利用パッケージ
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+TODO: 記載する
