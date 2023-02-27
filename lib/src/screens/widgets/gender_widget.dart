@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/src/models/person.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
 
-class GenderWidget extends StatelessWidget {
-  const GenderWidget({
-    super.key,
+class MaleWidget extends ConsumerWidget {
+  const MaleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gender = ref.watch(genderStateProvider);
+
+    return _GenderWidget(
+      gender: Gender.male,
+      icon: Icons.male,
+      active: gender == Gender.male,
+      onTap: () {
+        ref.read(genderStateProvider.notifier).state = Gender.male;
+      },
+    );
+  }
+}
+
+class FemaleWidget extends ConsumerWidget {
+  const FemaleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gender = ref.watch(genderStateProvider);
+
+    return _GenderWidget(
+      gender: Gender.female,
+      icon: Icons.female,
+      active: gender == Gender.female,
+      onTap: () {
+        ref.read(genderStateProvider.notifier).state = Gender.female;
+      },
+    );
+  }
+}
+
+class _GenderWidget extends StatelessWidget {
+  const _GenderWidget({
     required this.gender,
     required this.icon,
     required this.active,

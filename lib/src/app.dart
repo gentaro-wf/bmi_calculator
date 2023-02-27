@@ -1,6 +1,6 @@
 import 'package:bmi_calculator/src/constraints/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/src/screens/calculate/calculate_screen.dart';
+import 'package:bmi_calculator/src/screens/calculate_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

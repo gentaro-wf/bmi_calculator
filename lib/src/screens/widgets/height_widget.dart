@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
 import 'package:bmi_calculator/src/utils/hardcode.dart';
+import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
 
-class HeightWidget extends StatelessWidget {
+class HeightWidget extends ConsumerWidget {
   const HeightWidget({
     super.key,
-    required this.height,
-    this.onChanged,
   });
 
-  final double height;
-  final Function(double)? onChanged;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final height = ref.watch(heightStateProvider);
+
     return Container(
       decoration: const BoxDecoration(
         color: kActiveColor,
@@ -44,7 +43,9 @@ class HeightWidget extends StatelessWidget {
             value: height,
             min: 50,
             max: 250,
-            onChanged: onChanged,
+            onChanged: (value) {
+              ref.read(heightStateProvider.notifier).state = value;
+            },
           ),
         ],
       ),
