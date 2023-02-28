@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
+import 'package:bmi_calculator/src/models/person_info.dart';
 
 class WeightWidget extends ConsumerWidget {
   const WeightWidget({super.key});
@@ -11,7 +11,7 @@ class WeightWidget extends ConsumerWidget {
     final weight = ref.watch(weightStateProvider);
 
     return _ValueWidget(
-      title: 'WEIGHT',
+      title: '体重',
       value: weight,
       onAddTap: () => ref.read(weightStateProvider.notifier).state++,
       onMinusTap: () => ref.read(weightStateProvider.notifier).state--,
@@ -27,7 +27,7 @@ class AgeWidget extends ConsumerWidget {
     final age = ref.watch(ageStateProvider);
 
     return _ValueWidget(
-      title: 'AGE',
+      title: '年齢',
       value: age,
       onAddTap: () => ref.read(ageStateProvider.notifier).state++,
       onMinusTap: () => ref.read(ageStateProvider.notifier).state--,

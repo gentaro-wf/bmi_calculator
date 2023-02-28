@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
 import 'package:bmi_calculator/src/utils/hardcode.dart';
-import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
+import 'package:bmi_calculator/src/models/person_info.dart';
 
 class HeightWidget extends ConsumerWidget {
   const HeightWidget({
@@ -24,7 +24,7 @@ class HeightWidget extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'HEIGHT'.hardcode,
+            '身長'.hardcode,
             style: Theme.of(context).textTheme.labelLarge,
           ),
           RichText(
@@ -40,11 +40,11 @@ class HeightWidget extends ConsumerWidget {
             ),
           ),
           Slider(
-            value: height,
+            value: height.toDouble(),
             min: 50,
             max: 250,
             onChanged: (value) {
-              ref.read(heightStateProvider.notifier).state = value;
+              ref.read(heightStateProvider.notifier).state = value.toInt();
             },
           ),
         ],

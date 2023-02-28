@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
+import 'package:bmi_calculator/src/models/person_info.dart';
 
 class MaleWidget extends ConsumerWidget {
   const MaleWidget({super.key});
@@ -74,7 +74,7 @@ class _GenderWidget extends StatelessWidget {
               size: 96.0,
             ),
             Text(
-              gender.name.toUpperCase(),
+              gender.displayName,
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],

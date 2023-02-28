@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
-import 'package:bmi_calculator/src/provider/calc_value_provider.dart';
 import 'package:bmi_calculator/src/screens/result_screen.dart';
 import 'package:bmi_calculator/src/utils/hardcode.dart';
+import 'package:bmi_calculator/src/models/person_info.dart';
 
 class CalculateButton extends ConsumerWidget {
   const CalculateButton({super.key});
@@ -11,7 +11,7 @@ class CalculateButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return _CustomButton(
-      title: 'CALCULATE'.hardcode,
+      title: '計算'.hardcode,
       onTap: () {
         ref.read(genderStateProvider);
         if (ref.read(genderStateProvider) == Gender.unknown) {
@@ -56,7 +56,7 @@ class ReCalculateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _CustomButton(
-      title: 'RE-CALCULATE'.hardcode,
+      title: '再度計算'.hardcode,
       onTap: () => Navigator.of(context).pop(),
     );
   }
