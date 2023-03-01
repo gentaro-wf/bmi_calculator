@@ -11,6 +11,7 @@ class WeightWidget extends ConsumerWidget {
     final weight = ref.watch(weightStateProvider);
 
     return _ValueWidget(
+      keyName: 'weight',
       title: '体重',
       value: weight,
       onAddTap: () => ref.read(weightStateProvider.notifier).state++,
@@ -27,6 +28,7 @@ class AgeWidget extends ConsumerWidget {
     final age = ref.watch(ageStateProvider);
 
     return _ValueWidget(
+      keyName: 'age',
       title: '年齢',
       value: age,
       onAddTap: () => ref.read(ageStateProvider.notifier).state++,
@@ -37,12 +39,14 @@ class AgeWidget extends ConsumerWidget {
 
 class _ValueWidget extends StatelessWidget {
   const _ValueWidget({
+    required this.keyName,
     required this.title,
     required this.value,
     this.onAddTap,
     this.onMinusTap,
   });
 
+  final String keyName;
   final String title;
   final int value;
   final VoidCallback? onAddTap;
@@ -75,6 +79,7 @@ class _ValueWidget extends StatelessWidget {
                 backgroundColor: Colors.grey.shade700,
                 radius: 32.0,
                 child: IconButton(
+                  key: Key('${keyName}_minus'),
                   onPressed: onMinusTap,
                   icon: const Icon(
                     Icons.remove,
@@ -88,6 +93,7 @@ class _ValueWidget extends StatelessWidget {
                 backgroundColor: Colors.grey.shade700,
                 radius: 32.0,
                 child: IconButton(
+                  key: Key('${keyName}_plus'),
                   onPressed: onAddTap,
                   icon: const Icon(
                     Icons.add,

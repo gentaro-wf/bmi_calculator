@@ -3,44 +3,46 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
 import 'package:bmi_calculator/src/models/person_info.dart';
 
-class MaleWidget extends ConsumerWidget {
-  const MaleWidget({super.key});
+class GenderWidget extends ConsumerWidget {
+  const GenderWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gender = ref.watch(genderStateProvider);
 
-    return _GenderWidget(
-      gender: Gender.male,
-      icon: Icons.male,
-      active: gender == Gender.male,
-      onTap: () {
-        ref.read(genderStateProvider.notifier).state = Gender.male;
-      },
+    return Row(
+      children: [
+        Expanded(
+          child: _GenderButton(
+            key: const Key('male_button'),
+            gender: Gender.male,
+            icon: Icons.male,
+            active: gender == Gender.male,
+            onTap: () {
+              ref.read(genderStateProvider.notifier).state = Gender.male;
+            },
+          ),
+        ),
+        const SizedBox(width: 16.0),
+        Expanded(
+          child: _GenderButton(
+            key: const Key('female_button'),
+            gender: Gender.female,
+            icon: Icons.female,
+            active: gender == Gender.female,
+            onTap: () {
+              ref.read(genderStateProvider.notifier).state = Gender.female;
+            },
+          ),
+        ),
+      ],
     );
   }
 }
 
-class FemaleWidget extends ConsumerWidget {
-  const FemaleWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final gender = ref.watch(genderStateProvider);
-
-    return _GenderWidget(
-      gender: Gender.female,
-      icon: Icons.female,
-      active: gender == Gender.female,
-      onTap: () {
-        ref.read(genderStateProvider.notifier).state = Gender.female;
-      },
-    );
-  }
-}
-
-class _GenderWidget extends StatelessWidget {
-  const _GenderWidget({
+class _GenderButton extends StatelessWidget {
+  const _GenderButton({
+    required Key key,
     required this.gender,
     required this.icon,
     required this.active,
@@ -62,6 +64,7 @@ class _GenderWidget extends StatelessWidget {
         ),
       ),
       child: InkWell(
+        key: key,
         onTap: onTap,
         borderRadius: const BorderRadius.all(
           Radius.circular(8.0),

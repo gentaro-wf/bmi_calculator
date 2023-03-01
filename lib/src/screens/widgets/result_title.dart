@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/src/utils/hardcode.dart';
 import 'package:flutter/material.dart';
 
 class ResultTitle extends StatelessWidget {
@@ -11,7 +10,7 @@ class ResultTitle extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Text(
-        'Your Result'.hardcode,
+        'Your Result',
         style: Theme.of(context).textTheme.displayMedium!.copyWith(
               color: Colors.red,
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
 import 'package:bmi_calculator/src/screens/result_screen.dart';
-import 'package:bmi_calculator/src/utils/hardcode.dart';
 import 'package:bmi_calculator/src/models/person_info.dart';
 
 class CalculateButton extends ConsumerWidget {
@@ -11,7 +10,8 @@ class CalculateButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return _CustomButton(
-      title: '計算'.hardcode,
+      key: const Key('calculate_button'),
+      title: '計算',
       onTap: () {
         ref.read(genderStateProvider);
         if (ref.read(genderStateProvider) == Gender.unknown) {
@@ -22,7 +22,7 @@ class CalculateButton extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '性別を選択してください'.hardcode,
+                    '性別を選択してください',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.white,
                         ),
@@ -56,7 +56,8 @@ class ReCalculateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _CustomButton(
-      title: '再度計算'.hardcode,
+      key: const Key('re_calculate_button'),
+      title: '再度計算',
       onTap: () => Navigator.of(context).pop(),
     );
   }
@@ -64,6 +65,7 @@ class ReCalculateButton extends StatelessWidget {
 
 class _CustomButton extends ConsumerWidget {
   const _CustomButton({
+    required Key key,
     required this.title,
     this.onTap,
   });
@@ -83,6 +85,7 @@ class _CustomButton extends ConsumerWidget {
         ),
       ),
       child: InkWell(
+        key: key,
         onTap: onTap,
         child: Center(
           child: Text(
