@@ -49,3 +49,5 @@ app.*.map.json
 /macos/
 
 .fvm/flutter_sdk
+
+/coverage

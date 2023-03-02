@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
-import 'package:bmi_calculator/src/models/person_info.dart';
+import 'package:bmi_calculator/src/models/bmi_value_provider.dart';
 
 class WeightWidget extends ConsumerWidget {
   const WeightWidget({super.key});
@@ -11,11 +11,12 @@ class WeightWidget extends ConsumerWidget {
     final weight = ref.watch(weightStateProvider);
 
     return _ValueWidget(
-      keyName: 'weight',
+      key: const Key('weight_value'),
+      keyPrefix: 'weight',
       title: '体重',
       value: weight,
-      onAddTap: () => ref.read(weightStateProvider.notifier).state++,
-      onMinusTap: () => ref.read(weightStateProvider.notifier).state--,
+      onAddTap: () => ref.read(weightStateProvider.notifier).increment(),
+      onMinusTap: () => ref.read(weightStateProvider.notifier).decrement(),
     );
   }
 }
@@ -28,25 +29,27 @@ class AgeWidget extends ConsumerWidget {
     final age = ref.watch(ageStateProvider);
 
     return _ValueWidget(
-      keyName: 'age',
+      key: const Key('age_value'),
+      keyPrefix: 'age',
       title: '年齢',
       value: age,
-      onAddTap: () => ref.read(ageStateProvider.notifier).state++,
-      onMinusTap: () => ref.read(ageStateProvider.notifier).state--,
+      onAddTap: () => ref.read(ageStateProvider.notifier).increment(),
+      onMinusTap: () => ref.read(ageStateProvider.notifier).decrement(),
     );
   }
 }
 
 class _ValueWidget extends StatelessWidget {
   const _ValueWidget({
-    required this.keyName,
+    super.key,
+    required this.keyPrefix,
     required this.title,
     required this.value,
     this.onAddTap,
     this.onMinusTap,
   });
 
-  final String keyName;
+  final String keyPrefix;
   final String title;
   final int value;
   final VoidCallback? onAddTap;
@@ -79,7 +82,7 @@ class _ValueWidget extends StatelessWidget {
                 backgroundColor: Colors.grey.shade700,
                 radius: 32.0,
                 child: IconButton(
-                  key: Key('${keyName}_minus'),
+                  key: Key('${keyPrefix}_minus'),
                   onPressed: onMinusTap,
                   icon: const Icon(
                     Icons.remove,
@@ -93,7 +96,7 @@ class _ValueWidget extends StatelessWidget {
                 backgroundColor: Colors.grey.shade700,
                 radius: 32.0,
                 child: IconButton(
-                  key: Key('${keyName}_plus'),
+                  key: Key('${keyPrefix}_plus'),
                   onPressed: onAddTap,
                   icon: const Icon(
                     Icons.add,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
-import 'package:bmi_calculator/src/models/person_info.dart';
+import 'package:bmi_calculator/src/models/bmi_value_provider.dart';
 
 class GenderWidget extends ConsumerWidget {
   const GenderWidget({super.key});
@@ -13,7 +13,7 @@ class GenderWidget extends ConsumerWidget {
     return Row(
       children: [
         Expanded(
-          child: _GenderButton(
+          child: GenderButton(
             key: const Key('male_button'),
             gender: Gender.male,
             icon: Icons.male,
@@ -25,7 +25,7 @@ class GenderWidget extends ConsumerWidget {
         ),
         const SizedBox(width: 16.0),
         Expanded(
-          child: _GenderButton(
+          child: GenderButton(
             key: const Key('female_button'),
             gender: Gender.female,
             icon: Icons.female,
@@ -40,9 +40,9 @@ class GenderWidget extends ConsumerWidget {
   }
 }
 
-class _GenderButton extends StatelessWidget {
-  const _GenderButton({
-    required Key key,
+class GenderButton extends StatelessWidget {
+  const GenderButton({
+    super.key,
     required this.gender,
     required this.icon,
     required this.active,
@@ -64,7 +64,6 @@ class _GenderButton extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        key: key,
         onTap: onTap,
         borderRadius: const BorderRadius.all(
           Radius.circular(8.0),

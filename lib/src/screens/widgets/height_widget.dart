@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bmi_calculator/src/constraints/constants.dart';
-import 'package:bmi_calculator/src/models/person_info.dart';
+import 'package:bmi_calculator/src/models/bmi_value_provider.dart';
 
 class HeightWidget extends ConsumerWidget {
   const HeightWidget({

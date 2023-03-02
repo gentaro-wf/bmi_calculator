@@ -14,14 +14,15 @@ class BmiResult {
   double _bmi = 0.0;
   String _message = '';
 
-  String get result => _bmi.toStringAsFixed(1);
+  String get result => _bmi.toString();
   String get message => _message;
 
   void _calculate({
     required int height,
     required int weight,
   }) {
-    _bmi = weight / math.pow(height / 100, 2);
+    _bmi =
+        double.parse((weight / math.pow(height / 100, 2)).toStringAsFixed(1));
     if (_bmi < 16.0) {
       _message = '痩せすぎ';
     } else if (_bmi < 17.0) {
